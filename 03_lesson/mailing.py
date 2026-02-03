@@ -1,13 +1,13 @@
-from adress import Adress
+from address import Address
 
 
 class Mailing:
-    def __init__(self, to_adress, fromn_adress, cost, track):
-        self.to_adress = Adress
-        self.from_adress = Adress
+    def __init__(self, to_address, fromn_address, cost, track):
+        self.to_address = Address
+        self.from_address = Address
         self.cost = cost
         self.track = track
 
     def __str__(self):
-        return (f"{self.track}, {self.from_adress}, "
-                f"{self.to_adress}, {self.cost}")
+        return (f"{self.track}, {self.from_address}, "
+                f"{self.to_address}, {self.cost}")
