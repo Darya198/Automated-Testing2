@@ -16,8 +16,8 @@ images = wait.until(EC.visibility_of_element_located((By.XPATH, "(//img)[4]")))
 images = driver.find_elements(By.TAG_NAME, "img")
 
 if len(images) >= 3:
-    third_image_src = images[2].get_attribute("src")
-    print(f"SRC 3-й картинки: {third_image_src}")
+    image_src = images[2].get_attribute("src")
+    print(f"SRC 3-й картинки: {image_src}")
 else:
     print("На странице найдено меньше 3 картинок")
 

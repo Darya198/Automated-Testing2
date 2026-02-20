@@ -16,8 +16,8 @@ form.send_keys('SkyPro')
 button = driver.find_element(By.CSS_SELECTOR, "#updatingButton")
 button.click()
 
-txt = button.text
+text = button.text
 
-print(txt)
+print(text)
 
 driver.quit()

@@ -11,8 +11,8 @@ driver.get("http://uitestingplayground.com/ajax")
 
 driver.find_element(By.CSS_SELECTOR, "#ajaxButton").click()
 
-content = driver.find_element(By.CSS_SELECTOR, "#content")
-txt = content.find_element(By.CSS_SELECTOR, "p").text
+cont = driver.find_element(By.CSS_SELECTOR, "#content")
+txt = cont.find_element(By.CSS_SELECTOR, "p").text
 
 print(txt)
 
