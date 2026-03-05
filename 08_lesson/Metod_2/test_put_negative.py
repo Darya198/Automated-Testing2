@@ -1,28 +1,20 @@
 import requests
-from configuration import TOKEN
+from configuration import BASE_URL, TOKEN, BAD_HEADERS, DELETE_PROJECT_PAYLOAD
 from yougile_api import YouGileApi
 
-api = YouGileApi("https://ru.yougile.com", TOKEN)
+api = YouGileApi(BASE_URL, TOKEN)
 
 
 def test_put_delete_negative_unauthorized():
     response = api.create_new_project()
 
-    body = response.json()
-    assert "id" in body
-    project_id = body['id']
+    project_id = response.json()['id']
 
-    bad_headers = {
-        "Content-Type": "application/json"
-        }
-
-    payload = {
-        "deleted": True
-        }
+    url = f"{BASE_URL}/api-v2/projects/{project_id}"
 
     response = requests.put(
-        f"https://ru.yougile.com/api-v2/projects/{project_id}",
-        json=payload, headers=bad_headers
+        url, json=DELETE_PROJECT_PAYLOAD,
+        headers=BAD_HEADERS
         )
 
     assert response.status_code == 401, f"Ожидали 401, получили {

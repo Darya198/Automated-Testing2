@@ -1,25 +1,21 @@
 import requests
-from configuration import TOKEN
+from configuration import TOKEN, BASE_URL, DELETE_PROJECT_PAYLOAD
 from yougile_api import YouGileApi
 
-api = YouGileApi("https://ru.yougile.com", TOKEN)
+api = YouGileApi(BASE_URL, TOKEN)
 
 
 def test_put_delete_positive():
     response = api.create_new_project()
 
-    body = response.json()
-    assert "id" in body
-    project_id = body['id']
+    project_id = response.json()['id']
 
-    delete_payload = {
-        "deleted": True
-    }
+    url = f"{BASE_URL}//api-v2/projects/{project_id}"
 
     delete_response = requests.put(
-        f"https://ru.yougile.com/api-v2/projects/{project_id}",
-        json=delete_payload, headers=api.headers
+        url, json=DELETE_PROJECT_PAYLOAD,
+        headers=api.headers
         )
 
     assert delete_response.status_code == 200
-    assert "id" in response.json()
+    assert "id" in delete_response.json()

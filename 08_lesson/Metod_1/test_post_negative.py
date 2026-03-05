@@ -1,20 +1,11 @@
 import requests
-from configuration import TOKEN
-
-
-base_url = "https://ru.yougile.com"
+from configuration import BASE_URL, HEADERS, EMPTY_TITLE_PAYLOAD
 
 
 def test_post_negative_empty_title():
-    headers = {
-        "Authorization": f"Bearer {TOKEN}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "title": ""
-    }
+    url = f"{BASE_URL}/api-v2/projects"
 
     response = requests.post(
-        base_url + "/api-v2/projects", json=payload, headers=headers)
+        url, json=EMPTY_TITLE_PAYLOAD, headers=HEADERS)
 
     assert response.status_code == 400
